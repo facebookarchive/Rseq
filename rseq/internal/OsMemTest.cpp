@@ -50,6 +50,7 @@ TEST(OsMem, SanityCheck) {
   free(alloc2, kAllocSize2);
 }
 
+#if __EXCEPTIONS
 TEST(OsMem, ThrowsOnFailure) {
   errors::ThrowOnError thrower;
 
@@ -69,6 +70,7 @@ TEST(OsMem, ThrowsOnFailure) {
   }
   EXPECT_TRUE(failed);
 }
+#endif // __EXCEPTIONS
 
 TEST(OsMem, AllocatesExecutable) {
   const unsigned char return12345Template[] = {

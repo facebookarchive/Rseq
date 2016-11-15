@@ -16,6 +16,13 @@
 
 using namespace rseq::internal::errors;
 
+TEST(Errors, AbortOnErrorAborts) {
+  AbortOnError aoe;
+  ASSERT_DEATH(fatalError("ThisIsAnErrorString"), "ThisIsAnErrorString");
+}
+
+#if __EXCEPTIONS
+
 TEST(Errors, DefaultThrows) {
   ThrowOnError thrower;
   std::string msg = "Some error message";
@@ -62,11 +69,6 @@ TEST(Errors, AllowsChangingHandler) {
   EXPECT_TRUE(exceptionCaught);
 }
 
-TEST(Errors, AbortOnErrorAborts) {
-  AbortOnError aoe;
-  ASSERT_DEATH(fatalError("ThisIsAnErrorString"), "ThisIsAnErrorString");
-}
-
 static void throwException() {
   throw std::runtime_error("Runtime error");
 }
@@ -100,3 +102,11 @@ TEST(Errors, AbortOnErrorIsntPermanent) {
   }
   EXPECT_TRUE(exceptionCaught);
 }
+
+#else // __EXCEPTIONS
+
+TEST(Errors, DefaultAborts) {
+  ASSERT_DEATH(fatalError(""), "");
+}
+
+#endif // __EXCEPTIONS

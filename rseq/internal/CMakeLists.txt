@@ -34,6 +34,7 @@ add_library(clean_up_on_thread_death CleanUpOnThreadDeath.cpp)
 target_link_libraries(
   clean_up_on_thread_death
   errors
+  mutex
 )
 list(APPEND all_sources internal/CleanUpOnThreadDeath.cpp)
 
