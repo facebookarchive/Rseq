@@ -51,6 +51,7 @@ In this directory, run:
 
 ## Installing Rseq
 For the common case, you probably want:
+
     mkdir build && cd build
     cmake -DCMAKE_BUILD_TYPE=Release ../
     sudo make install
