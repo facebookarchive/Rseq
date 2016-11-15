@@ -66,8 +66,8 @@ another from ownership of a CPU, it patches that thread's copy of the function
 to jump to a failure path instead of doing the operation.
 
 ## Full documentation
-`Rseq.md` contains a more thorough description. Reading the comments in
-`rseq/Rseq.h` should give a working understanding of the API.
+[`Rseq.md`](Rseq.md) contains a more thorough description. Reading the comments in
+[`rseq/Rseq.h`](rseq/Rseq.h) should give a working understanding of the API.
 
 ## License
 Rseq is BSD-licensed. We also provide an additional patent grant.
