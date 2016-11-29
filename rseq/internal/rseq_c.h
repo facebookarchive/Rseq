@@ -24,11 +24,7 @@ extern __thread int (*rseq_store_trampoline)(
     unsigned long* dst, unsigned long val);
 extern __thread int (*rseq_store_fence_trampoline)(
     unsigned long* dst, unsigned long val);
-
-inline volatile int* rseq_thread_cached_cpu() {
-  static __thread volatile int cpu = -1;
-  return &cpu;
-}
+extern __thread volatile int rseq_thread_cached_cpu;
 
 int rseq_begin_slow_path();
 

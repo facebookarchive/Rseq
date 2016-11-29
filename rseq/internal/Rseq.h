@@ -49,7 +49,7 @@ inline void fenceWrapper() {
 
 inline std::atomic<int>* threadCachedCpu() {
   return reinterpret_cast<std::atomic<int>*>(
-      const_cast<int*>(rseq_thread_cached_cpu()));
+      const_cast<int*>(&rseq_thread_cached_cpu));
 }
 
 } // namespace internal

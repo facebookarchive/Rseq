@@ -23,6 +23,7 @@ __thread int (*rseq_load_trampoline)(unsigned long* dst, unsigned long* src);
 __thread int (*rseq_store_trampoline)(unsigned long* dst, unsigned long val);
 __thread int (*rseq_store_fence_trampoline)(
     unsigned long* dst, unsigned long val);
+__thread volatile int rseq_thread_cached_cpu = -1;
 
 int rseq_begin_slow_path() {
   rseq::internal::errors::AbortOnError aoe;

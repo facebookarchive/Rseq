@@ -33,28 +33,28 @@ typedef struct {
 
 
 inline int rseq_begin() {
-  int ret = *rseq_thread_cached_cpu();
+  int ret = rseq_thread_cached_cpu;
   if (RSEQ_UNLIKELY(ret < 0)) {
     ret = rseq_begin_slow_path();
   }
-  // Good enough for an acquire barrier on x86.
+  /* Good enough for an acquire barrier on x86. */
   __asm__ volatile("" : : : "memory");
   return ret;
 }
 
 inline int rseq_load(rseq_value_t *dst, rseq_repr_t *src) {
-  // Note: this goes through dynamically generated code, which will prevent
-  // compiler reordering.
+  /* Note: this goes through dynamically generated code, which will prevent
+     compiler reordering. */
   return RSEQ_LIKELY(!rseq_load_trampoline(dst, (unsigned long*)src));
 }
 
 inline int rseq_store(rseq_repr_t *dst, rseq_value_t val) {
-  // Same here.
+  /* Same here. */
   return RSEQ_LIKELY(!rseq_store_trampoline((unsigned long*)dst, val));
 }
 
 inline int rseq_store_fence(rseq_repr_t *dst, rseq_value_t val) {
-  // And here.
+  /* And here. */
   return RSEQ_LIKELY(!rseq_store_fence_trampoline((unsigned long*)dst, val));
 }
 
