@@ -34,6 +34,7 @@ version of clang or g++. Building the tests requires a gtest installation.
 
 ## Building Rseq
 In this directory, run:
+
     mkdir build
     cd build
     # Include the former option to produce an optimized build, and the latter to
